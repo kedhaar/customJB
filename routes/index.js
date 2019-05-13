@@ -7,6 +7,7 @@ var activity = require('./activity');
  * GET home page.
  */
 exports.index = function(req, res){
+    console.log( 'Get Home Page');
     if( !req.session.token ) {
         res.render( 'index', {
             title: 'Unauthenticated',
@@ -21,10 +22,12 @@ exports.index = function(req, res){
 };
 
 exports.login = function( req, res ) {
+      console.log( 'Get Home Page login');
     console.log( 'req.body: ', req.body );
     res.redirect( '/' );
 };
 
 exports.logout = function( req, res ) {
+      console.log( 'Get Home Page logout');
     req.session.token = '';
 };
