@@ -17,6 +17,7 @@ define([
     connection.on('clickedNext', save);
    
     function onRender() {
+        console.log('On render');
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
 
@@ -26,6 +27,7 @@ define([
     }
 
     function initialize(data) {
+        console.log('On initialize');
         console.log(data);
         if (data) {
             payload = data;
