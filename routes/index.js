@@ -15,7 +15,7 @@ exports.index = function(req, res){
         });
     } else {
         res.render( 'index', {
-            title: 'Journey Builder Activity',
+            title: 'Custom Journey Builder Activity',
             results: activity.logExecuteData,
         });
     }
