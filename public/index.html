@@ -39,12 +39,25 @@
 
     </div>
     <div class="slds-form-element">
-        <label class="slds-form-element__label" for="text-input-id-1">Enter Web Hook URl</label>
-        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+        <label class="slds-form-element__label" for="text-input-id-1" style="font-size:18px;">Enter Web Hook URl</label>
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right slds-input-has-icon_group-right">
             <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
-                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#broadcast"></use>
             </svg>
-            <input type="text" id="text-input-id-1" placeholder="Placeholder Text" class="slds-input" />
+            <input type="text" id="text-input-id-1" placeholder="URl..." class="slds-input" />
+            <div class="slds-input__icon-group slds-input__icon-group_right">
+                <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_x-small slds-input__spinner">
+                    <span class="slds-assistive-text">Enter Web Hook URl</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+                <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear">
+                    <svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Clear</span>
+                </button>
+            </div>
         </div>
     </div>
 </body>
