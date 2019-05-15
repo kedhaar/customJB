@@ -8,6 +8,13 @@ define([
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
+    
+    var steps = [
+        { "label": "Configure WebHook", "Key": "step1"}
+    ];
+    
+    var currentStep = steps[0].key;
+    
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -69,7 +76,9 @@ define([
 
     function save() {
         console.log('customActivity.js ----->  clicked on save');
-        var postcardURLValue = $('#postcard-url').val();
+        var postcardURLValue = $('#inputTextBox-1').val();
+        console.log('inside save get web hook URl');
+        console.log(postcardURLValue);
         var postcardTextValue = $('#postcard-text').val();
 
         payload['arguments'].execute.inArguments = [{
