@@ -1,74 +1,77 @@
 {
-    "workflowApiVersion": "1.1",
-    "metaData": {
-        "icon": "images/phone.png",
-        "iconSmall": "images/p1.png",
-        "category": "message"
-    },
-    "type": "REST",
-    "lang": {
-        "en-US": {
-            "name": "Custom Activity",
-          "description": "A custom Journey Builder activity",
-          "step1Label": "Configure Custom Activity"
-        }
-    },
-    "arguments": {
-        "execute": {
-           "inArguments":[
-				{
-                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
-                }									
-			],
-          "outArguments": [],
-          "url": "https://customjourneyactivity.herokuapp.com/journeybuilder/execute",
-           "verb": "POST",
-            "body": "",
-            "header": "",
-            "format": "json",
-            "useJwt": true,
-            "timeout": 10000
-        }
-    },
-    "configurationArguments": {
-      "applicationExtensionKey": "97616228-2793-4281-8466-08ce1941f225",
-      "save": {
-        "url": "https://customjourneyactivity.herokuapp.com/journeybuilder/save",
-          "verb": "POST",
-        "useJwt": true
-       },
-       "publish": {
-        "url": "https://customjourneyactivity.herokuapp.com/journeybuilder/publish",
-           "verb": "POST",
-        "useJwt": true
-       },
-      "stop": {
-        "url": "https://customjourneyactivity.herokuapp.com/journeybuilder/stop",
-           "verb": "POST",
-        "useJwt": true
-      },
-      "validate": {
-        "url": "https://customjourneyactivity.herokuapp.com/journeybuilder/validate",
-        "verb": "POST",
-        "useJwt": true
-      }
-    },
-    "wizardSteps": [
-        { "label": "Configure Activity", "key": "step1" }
-    ],
-    "userInterfaces": {
-        "configModal": {
-            "height": 400,
-            "width": 1000,
-          "fullscreen": false
-        }
-    },
-    "schema": {
-        "arguments": {
-            "execute": {
-                "inArguments": [],
-                "outArguments": []
-            }
-        }
-    }
+	"workflowApiVersion": "1.1",
+	"metaData": {
+		"icon": "images/phone.png",
+		"iconSmall": "images/p1.png",
+		"category": "message"
+	},
+	"type": "REST",
+	"lang": {
+		"en-US": {
+			"name": "Custom Activity",
+			"description": "A custom Journey Builder activity",
+			"step1Label": "Configure Custom Activity"
+		}
+	},
+	"arguments": {
+		"execute": {
+			"inArguments": [{
+				"emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}",
+				"firstName": "{{Contact.Attribute.CustomActivity.FirstName}}",
+				"lastName": "{{Contact.Attribute.CustomActivity.LastName}}",
+				"city": "{{Contact.Attribute.CustomActivity.City}}",
+				"country": "{{Contact.Attribute.CustomActivity.Country}}"
+			}],
+			"outArguments": [],
+			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/execute",
+			"verb": "POST",
+			"body": "",
+			"header": "",
+			"format": "json",
+			"useJwt": true,
+			"timeout": 10000
+		}
+	},
+	"configurationArguments": {
+		"applicationExtensionKey": "97616228-2793-4281-8466-08ce1941f225",
+		"save": {
+			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/save",
+			"verb": "POST",
+			"useJwt": true
+		},
+		"publish": {
+			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/publish",
+			"verb": "POST",
+			"useJwt": true
+		},
+		"stop": {
+			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/stop",
+			"verb": "POST",
+			"useJwt": true
+		},
+		"validate": {
+			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/validate",
+			"verb": "POST",
+			"useJwt": true
+		}
+	},
+	"wizardSteps": [{
+		"label": "Configure Activity",
+		"key": "step1"
+	}],
+	"userInterfaces": {
+		"configModal": {
+			"height": 400,
+			"width": 1000,
+			"fullscreen": false
+		}
+	},
+	"schema": {
+		"arguments": {
+			"execute": {
+				"inArguments": [],
+				"outArguments": []
+			}
+		}
+	}
 }
