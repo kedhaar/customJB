@@ -1,7 +1,7 @@
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
-    <head>
+<head>
     <title></title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -11,7 +11,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/require.js"></script>
     <script type="text/javascript">
-        (function () {
+        (function() {
             var config = {
                 baseUrl: 'js'
             };
@@ -23,9 +23,9 @@
             require(config, dependencies);
         })();
     </script>
-    </head>
+</head>
 
-    <body>
+<body>
     <div id="step1" class="step">
         <div class="slds-grid">
 
@@ -35,24 +35,16 @@
                 <h1 style="color:blue;">Under development by Saikat Chanda</h1>
             </main>
 
-
         </div>
 
     </div>
-    <div class="slds-grid slds-wrap">
-    <nav class="slds-col slds-size_1-of-1">
-    Page Header Component
-    </nav>
-    <main class="slds-col slds-size_1-of-2">
-    Image
-    </main>
-    <aside class="slds-col slds-size_1-of-2">
-    Tab Component
-    </aside>
-    <section class="slds-col slds-size_1-of-1">
-    Card Component
-    </section>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id-1">Input Label</label>
+        <div class="slds-form-element__control">
+            <input type="text" id="text-input-id-1" placeholder="Placeholder Text" class="slds-input" />
+        </div>
     </div>
-    </body>
 
-    </html>
+</body>
+
+</html>
