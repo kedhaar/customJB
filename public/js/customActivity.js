@@ -68,6 +68,7 @@ define([
     }
 
     function save() {
+        console.log('customActivity.js ----->  clicked on save');
         var postcardURLValue = $('#postcard-url').val();
         var postcardTextValue = $('#postcard-text').val();
 
