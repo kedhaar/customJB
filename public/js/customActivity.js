@@ -76,14 +76,19 @@ define([
 
     function save() {
         console.log('customActivity.js ----->  clicked on save');
-        var postcardURLValue = $('#inputTextBox-1').val();
-        console.log('inside save get web hook URl');
-        console.log(postcardURLValue);
-        var postcardTextValue = $('#postcard-text').val();
+        var webHookURlValue = $('#inputTextBox-1').val();
+        
+        console.log(webHookURlValue);
+        
 
         payload['arguments'].execute.inArguments = [{
+            "webHookURl": webHookURlValue,
             "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
+            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
+            "firstName": "{{Contact.Attribute.CustomActivity.FirstName}}",
+            "lastName": "{{Contact.Attribute.CustomActivity.LastName}}",
+            "city": "{{Contact.Attribute.CustomActivity.City}}",
+            "country": "{{Contact.Attribute.CustomActivity.Country}}"
         }];
         
         payload['metaData'].isConfigured = true;
@@ -91,6 +96,5 @@ define([
         console.log(payload);
         connection.trigger('updateActivity', payload);
     }
-
 
 });
