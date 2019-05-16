@@ -47,8 +47,8 @@ define([
             payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0
         );
-
-        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+        console.log('hasinArguments--->' + hasInArguments);
+        /*var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
         console.log(inArguments);
 
@@ -57,8 +57,12 @@ define([
                 
                 console.log(in each block);
             });
-        });
-
+        });*/
+        
+         if (hasInArguments && payload['arguments'].execute.inArguments[0].inputTextBox) {
+			$('#inputTextBox').val(payload['arguments'].execute.inArguments[0].inputTextBox);
+           } 
+        
         connection.trigger('updateButton', {
             button: 'next',
             text: 'done',
@@ -76,13 +80,30 @@ define([
     }
 
     function save() {
+        $('#errorMsgPreview').text('');
         console.log('customActivity.js ----->  clicked on save');
-        var webHookURlValue = $('#inputTextBox-1').val();
+        
+        var webHookURlValue = $('#inputTextBox').val();
+        var errMsg;
         
         console.log(webHookURlValue);
-        
+      
+	    var hasInArguments = Boolean( payload['arguments'] &&  payload['arguments'].execute &&  payload['arguments'].execute.inArguments && 
+	    payload['arguments'].execute.inArguments.length > 0);
 
-        payload['arguments'].execute.inArguments = [{
+        if (hasInArguments) {
+	        payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
+	    }
+        if (webHookURlValue.length == 0) { 
+	        errMsg = 'Error: WebHook URl cannot be blank.'; 
+	        console.error(errMsg);
+	        $('#errorMsgConfig').text(errMsg); 
+	        connection.trigger('ready');
+	    }else {
+	    payload['metaData'].isConfigured = true; 
+	    connection.trigger('updateActivity', payload);
+	    }
+        /*payload['arguments'].execute.inArguments = [{
             "webHookURl": webHookURlValue,
             "tokens": authTokens,
             "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
@@ -95,7 +116,7 @@ define([
         payload['metaData'].isConfigured = true;
 
         console.log(payload);
-        connection.trigger('updateActivity', payload);
+        connection.trigger('updateActivity', payload);*/
     }
 
 });
