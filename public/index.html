@@ -22,6 +22,12 @@
 
             require(config, dependencies);
         })();
+        
+        $("#clearBtn").click( function()
+           {
+             $("#inputTextBox").val('');
+           }
+        );
     </script>
 </head>
 
@@ -33,7 +39,7 @@
                 <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#broadcast"></use>
             </svg>
             <input type="text" id="inputTextBox" placeholder="URl..." class="slds-input" />
-            <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear">
+            <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear" id="clearBtn">
                 <svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
                     <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"></use>
                 </svg>
