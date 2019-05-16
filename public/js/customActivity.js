@@ -95,9 +95,11 @@ define([
 	        payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
 	    }
         if (webHookURlValue.length == 0) { 
+		
 	        errMsg = 'Error: WebHook URl cannot be blank.'; 
 	        console.error(errMsg);
 	        $('#errorMsgConfig').text(errMsg); 
+		$('#errorMsgConfig').show();
 	        connection.trigger('ready');
 	    }else {
 	    payload['metaData'].isConfigured = true; 
