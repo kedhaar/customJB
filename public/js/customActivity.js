@@ -60,7 +60,7 @@ define([
         });*/
         
          if (hasInArguments && payload['arguments'].execute.inArguments[0].inputTextBox) {
-			$('#inputTextBox').val(payload['arguments'].execute.inArguments[0].inputTextBox);
+			$('#inputTextBox').val(payload['arguments'].execute.inArguments[0].webHookURl);
            } 
         
         connection.trigger('updateButton', {
