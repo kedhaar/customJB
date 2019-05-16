@@ -92,7 +92,16 @@ define([
 	    payload['arguments'].execute.inArguments.length > 0);
 
         if (hasInArguments) {
-	        payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
+	    //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
+	    payload['arguments'].execute.inArguments = [{
+            "webHookURl": webHookURlValue,
+            "tokens": authTokens,
+            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
+            "firstName": "{{Contact.Attribute.CustomActivity.FirstName}}",
+            "lastName": "{{Contact.Attribute.CustomActivity.LastName}}",
+            "city": "{{Contact.Attribute.CustomActivity.City}}",
+            "country": "{{Contact.Attribute.CustomActivity.Country}}"
+        }];
 	    }
         if (webHookURlValue.length == 0) { 
 		
