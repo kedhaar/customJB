@@ -59,7 +59,7 @@ define([
             });
         });*/
         
-         if (hasInArguments && payload['arguments'].execute.inArguments[0].inputTextBox) {
+         if (hasInArguments && payload['arguments'].execute.inArguments[0].webHookURl) {
 			$('#inputTextBox').val(payload['arguments'].execute.inArguments[0].webHookURl);
            } 
         
