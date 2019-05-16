@@ -23,11 +23,12 @@
             require(config, dependencies);
         })();
         
-        $("#clearBtn").click( function()
-           {
+        $(document).ready(function() {
+             $("#clearBtn").click(function() {
              $("#inputTextBox").val('');
-           }
-        );
+            });
+        });
+        
     </script>
 </head>
 
