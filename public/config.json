@@ -37,21 +37,25 @@
 		"save": {
 			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/save",
 			"verb": "POST",
+			"body": "",
 			"useJwt": true
 		},
 		"publish": {
 			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/publish",
 			"verb": "POST",
+			"body": "",
 			"useJwt": true
 		},
 		"stop": {
 			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/stop",
 			"verb": "POST",
+			"body": "",
 			"useJwt": true
 		},
 		"validate": {
 			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/validate",
 			"verb": "POST",
+			"body": "",
 			"useJwt": true
 		}
 	},
