@@ -87,6 +87,19 @@ console.log( 'Activity.js execute route Sai' );
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
             
+            var request = require('request');
+            var url = 'https://enlr84gpveb2.x.pipedream.net/'
+            
+            request({
+                url: url,
+                method: "POST",
+                json: decoded.inArguments[0]
+            }, function(error, response, body){
+                if(!error){
+                    console.log(body);
+            }
+            });
+            
             logData(req);
             res.send(200, 'Execute');
         } else {
