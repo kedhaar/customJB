@@ -111,6 +111,7 @@ define([
 		$('#errorMsgConfig').show();
 	        connection.trigger('ready');
 	    }else {
+	    console.log('Updated Connection Activity');
 	    payload['metaData'].isConfigured = true; 
 	    connection.trigger('updateActivity', payload);
 	    }
