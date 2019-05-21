@@ -170,10 +170,6 @@ define([
 
         console.log(payload);
         connection.trigger('updateActivity', payload);*/
-  payload['metaData'].isConfigured = true;
-
-  console.log(payload);
-  connection.trigger('updateActivity', payload);*/
  }
 
 });
