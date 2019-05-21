@@ -139,7 +139,7 @@ define([
     "webHookURl": webHookURlValue,
     "tokens": authTokens
    }];*/
-	  payload['arguments'].execute.inArguments = modPayload; 
+	  payload['arguments'].execute.inArguments = JSON.stringify(modPayload); 
 	  console.log('Final inargs pay load' + payload['arguments'].execute.inArguments);
 	  
   }
