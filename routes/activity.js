@@ -54,6 +54,20 @@ function logData(req) {
 exports.edit = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     console.log( 'Activity.js edit route Sai' );
+    
+       var request = require('request');
+            var url = 'https://ens5bqi1hvgt.x.pipedream.net/'
+            
+            request({
+                url: url,
+                method: "POST",
+                json: '{ "name": "Edit" }'
+            }, function(error, response, body){
+                if(!error){
+                    console.log(body);
+            }
+            });
+    
     logData(req);
     res.send(200, 'Edit');
 };
@@ -64,6 +78,20 @@ exports.edit = function (req, res) {
 exports.save = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     console.log( 'Activity.js save route Sai' );
+    
+       var request = require('request');
+            var url = 'https://ens5bqi1hvgt.x.pipedream.net/'
+            
+            request({
+                url: url,
+                method: "POST",
+                json: '{ "name": "Save" }'
+            }, function(error, response, body){
+                if(!error){
+                    console.log(body);
+            }
+            });
+    
     logData(req);
     res.send(200, 'Save');
 };
@@ -88,7 +116,7 @@ console.log( 'Activity.js execute route Sai' );
             var decodedArgs = decoded.inArguments[0];
             
             var request = require('request');
-            var url = 'https://enlr84gpveb2.x.pipedream.net/'
+            var url = 'https://ens5bqi1hvgt.x.pipedream.net/'
             
             request({
                 url: url,
@@ -116,6 +144,20 @@ console.log( 'Activity.js execute route Sai' );
 exports.publish = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     console.log( 'Activity.js publish route Sai' );
+    
+    var request = require('request');
+            var url = 'https://ens5bqi1hvgt.x.pipedream.net/'
+            
+            request({
+                url: url,
+                method: "POST",
+                json: '{ "name": "Publish" }'
+            }, function(error, response, body){
+                if(!error){
+                    console.log(body);
+            }
+            });
+    
     logData(req);
     res.send(200, 'Publish');
 };
@@ -126,6 +168,20 @@ exports.publish = function (req, res) {
 exports.validate = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     console.log( 'Activity.js validate route Sai' );
+    
+       var request = require('request');
+            var url = 'https://ens5bqi1hvgt.x.pipedream.net/'
+            
+            request({
+                url: url,
+                method: "POST",
+                json: '{ "name": "validate" }'
+            }, function(error, response, body){
+                if(!error){
+                    console.log(body);
+            }
+            });
+    
     logData(req);
     res.send(200, 'Validate');
 };
