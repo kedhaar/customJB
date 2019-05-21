@@ -121,7 +121,7 @@ console.log( 'Activity.js execute route Sai' );
             request({
                 url: url,
                 method: "POST",
-                json: decoded.inArguments[0]
+                json: decoded
             }, function(error, response, body){
                 if(!error){
                     console.log(body);
