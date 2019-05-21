@@ -30,9 +30,16 @@ define([
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
+	      console.log("xxxxxxxxxx");
+	    connection.trigger('requestSchema');
+	    connection.on('requestedSchema', function (data) {
+   	// save schema
+   	console.log('*** Schema ***', JSON.stringify(data['schema']));
+	});
+	    console.log("xxxxxxxxxx");
 	var eventDefinitionKey;
 	connection.trigger('requestTriggerEventDefinition');
-
+	
 	connection.on('requestedTriggerEventDefinition',
 	function(eventDefinitionModel) {
     	if(eventDefinitionModel){
