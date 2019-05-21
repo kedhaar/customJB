@@ -95,12 +95,7 @@ define([
 	    //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
 	    payload['arguments'].execute.inArguments = [{
             "webHookURl": webHookURlValue,
-            "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
-            "firstName": "{{Contact.Attribute.CustomActivity.FirstName}}",
-            "lastName": "{{Contact.Attribute.CustomActivity.LastName}}",
-            "city": "{{Contact.Attribute.CustomActivity.City}}",
-            "country": "{{Contact.Attribute.CustomActivity.Country}}"
+            "tokens": authTokens
         }];
 	    }
         if (webHookURlValue.length == 0) { 
@@ -112,6 +107,7 @@ define([
 	        connection.trigger('ready');
 	    }else {
 	    console.log('Updated Connection Activity');
+	    console.log('payload------>'+ JSON.stringify(payload));
 	    payload['metaData'].isConfigured = true; 
 	    connection.trigger('updateActivity', payload);
 	    }
