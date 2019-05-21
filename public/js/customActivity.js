@@ -130,8 +130,8 @@ define([
 	  modPayload.webHookURl = webHookURlValue;
 	  modPayload.tokens = authTokens;
 	 for (var i = 0; i < deFieldsKey.length; i++) {
-	    	 var obj = Key+i;
-		 var obj1 = obj + ":" + deFieldsKey[i].key;
+	    	 var obj = 'Key' + i + ':';
+		 var obj1 = obj + deFieldsKey[i].key;
 		 modPayload.obj = obj1;
 	   }
 	    
