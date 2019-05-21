@@ -93,7 +93,7 @@ define([
   var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
    payload['arguments'].execute.inArguments.length > 0);
 
-  if (true) {
+  if (hasInArguments) {
    //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
 	    payload['arguments'].execute.inArguments = [{
             "webHookURl": webHookURlValue,
@@ -115,7 +115,7 @@ define([
    connection.trigger('ready');
   } else {
    console.log('Updated Connection Activity');
-   console.log('payload------>' + JSON.stringify(payload));
+   
    payload['metaData'].isConfigured = true;
    connection.trigger('updateActivity', payload);
   }
