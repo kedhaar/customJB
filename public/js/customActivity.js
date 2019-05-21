@@ -35,8 +35,9 @@ define([
 	connection.trigger('requestSchema');
         connection.on('requestedSchema', function (data) {
    	// save schema
-	deDefKey = JSON.parse(data['schema']);
+	deDefKey = data['schema'];
    	console.log('*** Schema ***', deDefKey);
+	console.log('*** key elements ***', deDefKey.length);
 	console.log('*** key elements ***', deDefKey[0].key);
 	});
 	    
