@@ -126,11 +126,20 @@ define([
 
   if (true) {
    //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
-   payload['arguments'].execute.inArguments = [{
+	  var modPayload = {};
+	  modpayload.webHookURl = webHookURlValue;
+	  modpayload.tokens = authTokens;
+	 for (var i = 0; i < deDefKey.length; i++) {
+	    	 var obj = Key+i;
+		 var obj1 = obj + ":" + deDefKey[i].key;
+		 modpayload.obj = obj1;
+	   }
+	    
+ /*  payload['arguments'].execute.inArguments = [{
     "webHookURl": webHookURlValue,
     "tokens": authTokens
-   }];
-	  payload['arguments'].execute.inArguments = deFieldsKey;
+   }];*/
+	  payload['arguments'].execute.inArguments = modPayload; 
 	  console.log('Final inargs pay load' + payload['arguments'].execute.inArguments);
 	  
   }
