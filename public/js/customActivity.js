@@ -91,7 +91,7 @@ define([
 	    var hasInArguments = Boolean( payload['arguments'] &&  payload['arguments'].execute &&  payload['arguments'].execute.inArguments && 
 	    payload['arguments'].execute.inArguments.length > 0);
 
-        if (hasInArguments) {
+        if (true) {
 	    //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
 	    payload['arguments'].execute.inArguments = [{
             "webHookURl": webHookURlValue,
