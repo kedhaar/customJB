@@ -127,12 +127,12 @@ define([
   if (true) {
    //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
 	  var modPayload = {};
-	  modpayload.webHookURl = webHookURlValue;
-	  modpayload.tokens = authTokens;
+	  modPayload.webHookURl = webHookURlValue;
+	  modPayload.tokens = authTokens;
 	 for (var i = 0; i < deDefKey.length; i++) {
 	    	 var obj = Key+i;
 		 var obj1 = obj + ":" + deDefKey[i].key;
-		 modpayload.obj = obj1;
+		 modPayload.obj = obj1;
 	   }
 	    
  /*  payload['arguments'].execute.inArguments = [{
