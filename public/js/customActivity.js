@@ -6,9 +6,11 @@ define([
     'use strict';
 
     var connection = new Postmonger.Session();
+    /** variable to hold tokens for fuel-sdk  received on call to connection.on('requestTokens') **/
     var authTokens = {};
     var payload = {};
-
+    /** variable to hold journey schema response received on call to connection.on('requestedSchema') **/
+    var jsonSchemaObject = {};
 
     var steps = [{
         "label": "Configure WebHook",
@@ -32,21 +34,21 @@ define([
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
-        var deDefKey;
-        var deFieldsKey = [];
+        //var deDefKey;
+        //var deFieldsKey = [];
         connection.trigger('requestSchema');
         connection.on('requestedSchema', function(data) {
             // save schema
-            deDefKey = data['schema'];
-            for (var i = 0; i < deDefKey.length; i++) {
-                var obj = deDefKey[0].key;
-                deFieldsKey.push(obj);
-            }
-            console.log('*** Schema ***', deDefKey);
-            console.log('*** key elements ***', deDefKey.length);
-            console.log('*** key elements ***', deDefKey[0].key);
+            jsonSchemaObject = data['schema'];
+            /** for (var i = 0; i < deDefKey.length; i++) {
+                 var obj = deDefKey[0].key;
+                 deFieldsKey.push(obj);
+             }**/
+            console.log('*** Schema ***', jsonSchemaObject);
+            // console.log('*** key elements ***', deDefKey.length);
+            // console.log('*** key elements ***', deDefKey[0].key);
         });
-        console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
+        // console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
 
     }
 
@@ -107,10 +109,22 @@ define([
 
         var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0);
+        var inArgs = {};
+        inArgs.webHookURl = webHookURlValue;
+        inArgs.tokens = authTokens;
+        jsonSchemaObject.forEach(function(item) {
+            var deArgs = item.key;
+            var jsonSplit = deArgs.split(".");
+            var jsonkey = jsonSplit[jsonSplit.length - 1];
 
+            inArgs[jsonkey] = deArgs;
+        });
+        console.log('In Args payload' + JSON.stringify(inArgs));
         if (hasInArguments) {
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
-            payload['arguments'].execute.inArguments = [{
+            payload['arguments'].execute.inArguments = JSON.stringify(inArgs);
+
+            /** [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
                 "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
@@ -118,7 +132,7 @@ define([
                 "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
                 "city": "{{Contact.Attribute.CustomJB.City}}",
                 "country": "{{Contact.Attribute.CustomJB.Country}}"
-            }];
+            }];**/
 
         }
         if (webHookURlValue.length == 0) {
