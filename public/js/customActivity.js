@@ -46,10 +46,7 @@ define([
    console.log('*** key elements ***', deDefKey.length);
    console.log('*** key elements ***', deDefKey[0].key);
   });
-	    
-	   for (var i = 0; i < deFieldsKey.length; i++) {
-	    console.log('*** DE Fields schema ***', deFieldsKey[i].key);
-	   } 
+ console.log('*** DE Fields schema ***', deFieldsKey[i]);
 
     }
 
