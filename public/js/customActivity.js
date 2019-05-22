@@ -49,7 +49,26 @@ define([
             // console.log('*** key elements ***', deDefKey[0].key);
         });
         // console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
+        
+        //Delete here
+        
+        var eventDefinitionKey;
+connection.trigger('requestTriggerEventDefinition');
 
+connection.on('requestedTriggerEventDefinition',
+function(eventDefinitionModel) {
+    if(eventDefinitionModel){
+
+        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+        console.log(">>>Event Definition Key " + eventDefinitionKey);
+        /*If you want to see all*/
+        console.log('>>>Request Trigger', 
+        JSON.stringify(eventDefinitionModel));
+    }
+
+});
+
+        // Till here
     }
 
     function initialize(data) {
