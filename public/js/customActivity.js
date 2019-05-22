@@ -1,29 +1,29 @@
 define([
- 'postmonger'
+    'postmonger'
 ], function(
- Postmonger
+    Postmonger
 ) {
- 'use strict';
+    'use strict';
 
- var connection = new Postmonger.Session();
- var authTokens = {};
- var payload = {};
- 
+    var connection = new Postmonger.Session();
+    var authTokens = {};
+    var payload = {};
 
- var steps = [{
-  "label": "Configure WebHook",
-  "Key": "step1"
- }];
 
- var currentStep = steps[0].key;
+    var steps = [{
+        "label": "Configure WebHook",
+        "Key": "step1"
+    }];
 
- $(window).ready(onRender);
+    var currentStep = steps[0].key;
 
- connection.on('initActivity', initialize);
- connection.on('requestedTokens', onGetTokens);
- connection.on('requestedEndpoints', onGetEndpoints);
+    $(window).ready(onRender);
 
- connection.on('clickedNext', save);
+    connection.on('initActivity', initialize);
+    connection.on('requestedTokens', onGetTokens);
+    connection.on('requestedEndpoints', onGetEndpoints);
+
+    connection.on('clickedNext', save);
 
     function onRender() {
         console.log('On render');
@@ -32,123 +32,123 @@ define([
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
-	     var deDefKey;
-	     var deFieldsKey = [];
-  connection.trigger('requestSchema');
-  connection.on('requestedSchema', function(data) {
-   // save schema
-   deDefKey = data['schema'];
-	   for (var i = 0; i < deDefKey.length; i++) {
-	    var obj = deDefKey[0].key;
-	    deFieldsKey.push(obj);
-	   }
-   console.log('*** Schema ***', deDefKey);
-   console.log('*** key elements ***', deDefKey.length);
-   console.log('*** key elements ***', deDefKey[0].key);
-  });
- console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
+        var deDefKey;
+        var deFieldsKey = [];
+        connection.trigger('requestSchema');
+        connection.on('requestedSchema', function(data) {
+            // save schema
+            deDefKey = data['schema'];
+            for (var i = 0; i < deDefKey.length; i++) {
+                var obj = deDefKey[0].key;
+                deFieldsKey.push(obj);
+            }
+            console.log('*** Schema ***', deDefKey);
+            console.log('*** key elements ***', deDefKey.length);
+            console.log('*** key elements ***', deDefKey[0].key);
+        });
+        console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
 
     }
 
- function initialize(data) {
-  console.log('On initialize');
+    function initialize(data) {
+        console.log('On initialize');
 
-  console.log(data);
-  if (data) {
-   payload = data;
-  }
+        console.log(data);
+        if (data) {
+            payload = data;
+        }
 
-  var hasInArguments = Boolean(
-   payload['arguments'] &&
-   payload['arguments'].execute &&
-   payload['arguments'].execute.inArguments &&
-   payload['arguments'].execute.inArguments.length > 0
-  );
-  console.log('hasinArguments--->' + hasInArguments);
-  /*var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+        var hasInArguments = Boolean(
+            payload['arguments'] &&
+            payload['arguments'].execute &&
+            payload['arguments'].execute.inArguments &&
+            payload['arguments'].execute.inArguments.length > 0
+        );
+        console.log('hasinArguments--->' + hasInArguments);
+        /*var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-  console.log(inArguments);
+        console.log(inArguments);
 
-  $.each(inArguments, function (index, inArgument) {
-      $.each(inArgument, function (key, val) {
-          
-          console.log(in each block);
-      });
-  });*/
+        $.each(inArguments, function (index, inArgument) {
+            $.each(inArgument, function (key, val) {
+                
+                console.log(in each block);
+            });
+        });*/
 
-  if (hasInArguments && payload['arguments'].execute.inArguments[0].webHookURl) {
-   $('#inputTextBox').val(payload['arguments'].execute.inArguments[0].webHookURl);
-  }
+        if (hasInArguments && payload['arguments'].execute.inArguments[0].webHookURl) {
+            $('#inputTextBox').val(payload['arguments'].execute.inArguments[0].webHookURl);
+        }
 
-  connection.trigger('updateButton', {
-   button: 'next',
-   text: 'done',
-   visible: true
-  });
- }
+        connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
+        });
+    }
 
- function onGetTokens(tokens) {
-  console.log(tokens);
-  authTokens = tokens;
- }
+    function onGetTokens(tokens) {
+        console.log(tokens);
+        authTokens = tokens;
+    }
 
- function onGetEndpoints(endpoints) {
-  console.log(endpoints);
- }
+    function onGetEndpoints(endpoints) {
+        console.log(endpoints);
+    }
 
- function save() {
-  $('#errorMsgPreview').text('');
-  console.log('customActivity.js ----->  clicked on save');
+    function save() {
+        $('#errorMsgPreview').text('');
+        console.log('customActivity.js ----->  clicked on save');
 
-  var webHookURlValue = $('#inputTextBox').val();
-  var errMsg;
+        var webHookURlValue = $('#inputTextBox').val();
+        var errMsg;
 
-  console.log(webHookURlValue);
+        console.log(webHookURlValue);
 
-  var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
-   payload['arguments'].execute.inArguments.length > 0);
+        var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
+            payload['arguments'].execute.inArguments.length > 0);
 
-  if (hasInArguments) {
-   //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
-	    payload['arguments'].execute.inArguments = [{
-            "webHookURl": webHookURlValue,
-            "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
-            "firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
-            "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
-            "city": "{{Contact.Attribute.CustomJB.City}}",
-            "country": "{{Contact.Attribute.CustomJB.Country}}"
-        }];
-	  
-  }
-  if (webHookURlValue.length == 0) {
+        if (hasInArguments) {
+            //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
+            payload['arguments'].execute.inArguments = [{
+                "webHookURl": webHookURlValue,
+                "tokens": authTokens,
+                "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
+                "firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
+                "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
+                "city": "{{Contact.Attribute.CustomJB.City}}",
+                "country": "{{Contact.Attribute.CustomJB.Country}}"
+            }];
 
-   errMsg = 'Error: WebHook URl cannot be blank.';
-   console.error(errMsg);
-   $('#errorMsgConfig').text(errMsg);
-   $('#errorMsgConfig').show();
-   connection.trigger('ready');
-  } else {
-   console.log('Updated Connection Activity');
-   
-   payload['metaData'].isConfigured = true;
-   connection.trigger('updateActivity', payload);
-  }
+        }
+        if (webHookURlValue.length == 0) {
 
-  /*payload['arguments'].execute.inArguments = [{
-            "webHookURl": webHookURlValue,
-            "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
-            "firstName": "{{Contact.Attribute.CustomActivity.FirstName}}",
-            "lastName": "{{Contact.Attribute.CustomActivity.LastName}}",
-            "city": "{{Contact.Attribute.CustomActivity.City}}",
-            "country": "{{Contact.Attribute.CustomActivity.Country}}"
-        }];
-        
-        payload['metaData'].isConfigured = true;
+            errMsg = 'Error: WebHook URl cannot be blank.';
+            console.error(errMsg);
+            $('#errorMsgConfig').text(errMsg);
+            $('#errorMsgConfig').show();
+            connection.trigger('ready');
+        } else {
+            console.log('Updated Connection Activity');
 
-        console.log(payload);
-        connection.trigger('updateActivity', payload);*/
- }
+            payload['metaData'].isConfigured = true;
+            connection.trigger('updateActivity', payload);
+        }
+
+        /*payload['arguments'].execute.inArguments = [{
+                  "webHookURl": webHookURlValue,
+                  "tokens": authTokens,
+                  "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
+                  "firstName": "{{Contact.Attribute.CustomActivity.FirstName}}",
+                  "lastName": "{{Contact.Attribute.CustomActivity.LastName}}",
+                  "city": "{{Contact.Attribute.CustomActivity.City}}",
+                  "country": "{{Contact.Attribute.CustomActivity.Country}}"
+              }];
+              
+              payload['metaData'].isConfigured = true;
+
+              console.log(payload);
+              connection.trigger('updateActivity', payload);*/
+    }
 
 });
