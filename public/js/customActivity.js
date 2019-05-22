@@ -119,11 +119,12 @@ define([
 
             inArgs[jsonkey] = deArgs;
         });
-        var modPayLoad = "[" + JSON.stringify(inArgs) + "]";
+        var modPayLoad = [];
         console.log('In Args payload' + modPayLoad);
         if (hasInArguments) {
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
-            payload['arguments'].execute.inArguments = inArgs;
+            modPayLoad.push(inArgs);
+            payload['arguments'].execute.inArguments = modPayLoad;
 
             /** [{
                 "webHookURl": webHookURlValue,
