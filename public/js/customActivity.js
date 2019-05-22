@@ -32,6 +32,24 @@ define([
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
+	     var deDefKey;
+	     var deFieldsKey = [];
+  connection.trigger('requestSchema');
+  connection.on('requestedSchema', function(data) {
+   // save schema
+   deDefKey = data['schema'];
+	   for (var i = 0; i < deDefKey.length; i++) {
+	    var obj = deDefKey[0].key;
+	    deFieldsKey.push(obj);
+	   }
+   console.log('*** Schema ***', deDefKey);
+   console.log('*** key elements ***', deDefKey.length);
+   console.log('*** key elements ***', deDefKey[0].key);
+  });
+	    
+	   for (var i = 0; i < deFieldsKey.length; i++) {
+	    console.log('*** DE Fields schema ***', deFieldsKey[i].key);
+	   } 
 
     }
 
