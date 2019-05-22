@@ -123,7 +123,7 @@ define([
         console.log('In Args payload' + modPayLoad);
         if (hasInArguments) {
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
-            payload['arguments'].execute.inArguments = modPayLoad;
+            payload['arguments'].execute.inArguments = inArgs;
 
             /** [{
                 "webHookURl": webHookURlValue,
