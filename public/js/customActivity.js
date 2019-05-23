@@ -126,6 +126,8 @@ define([
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
             modPayLoad.push(inArgs);
             payload['arguments'].execute.inArguments = modPayLoad;
+            
+            console.log('PayLoad' + modPayLoad);
 
             /** [{
                 "webHookURl": webHookURlValue,
