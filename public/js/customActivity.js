@@ -122,7 +122,7 @@ define([
         });
         var modPayLoad = [];
         
-        if (hasInArguments) {
+        if (true) {
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
             modPayLoad.push(inArgs);
             payload['arguments'].execute.inArguments = modPayLoad;
