@@ -50,25 +50,6 @@ define([
         });
         // console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
         
-        //Delete here
-        
-        var eventDefinitionKey;
-connection.trigger('requestTriggerEventDefinition');
-
-connection.on('requestedTriggerEventDefinition',
-function(eventDefinitionModel) {
-    if(eventDefinitionModel){
-
-        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        console.log(">>>Event Definition Key " + eventDefinitionKey);
-        /*If you want to see all*/
-        console.log('>>>Request Trigger', 
-        JSON.stringify(eventDefinitionModel));
-    }
-
-});
-
-        // Till here
     }
 
     function initialize(data) {
@@ -136,10 +117,11 @@ function(eventDefinitionModel) {
             var jsonSplit = deArgs.split(".");
             var jsonkey = jsonSplit[jsonSplit.length - 1];
 
-            inArgs[jsonkey] = deArgs;
+            //inArgs[jsonkey] = deArgs;
+            inArgs[jsonkey] = 'Contact.Attribute.'+ jsonSplit[1] +'.'+ jsonkey;
         });
         var modPayLoad = [];
-        console.log('In Args payload' + modPayLoad);
+        
         if (hasInArguments) {
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
             modPayLoad.push(inArgs);
