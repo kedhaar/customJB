@@ -15,7 +15,13 @@
 	},
 	"arguments": {
 		"execute": {
-			"inArguments": [],
+			"inArguments": [{
+				"emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
+            			"firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
+            			"lastName": "{{Contact.Attribute.CustomJB.LastName}}",
+           			"city": "{{Contact.Attribute.CustomJB.City}}",
+            			"Country": "{{Contact.Attribute.CustomJB.Country}}"
+			}],
 			"outArguments": [],
 			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/execute",
 			"verb": "POST",
