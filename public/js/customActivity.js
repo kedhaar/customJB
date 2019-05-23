@@ -118,7 +118,7 @@ define([
             var jsonkey = jsonSplit[jsonSplit.length - 1];
 
             //inArgs[jsonkey] = deArgs;
-            inArgs[jsonkey] = 'Contact.Attribute.'+ jsonSplit[1] +'.'+ jsonkey;
+            inArgs[jsonkey] = '{{Contact.Attribute.'+ jsonSplit[1] +'.'+ jsonkey + '}}';
         });
         var modPayLoad = [];
         
