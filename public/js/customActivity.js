@@ -146,7 +146,7 @@ define([
 
             console.log('PayLoad' + modPayLoad);
 
-            payload['arguments'].execute.inArguments = [{
+          /*  payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
                 "emailAddress": "{{Contact.Attribute."+ eventDefinitionKey + ".EmailAddress}}",
@@ -154,8 +154,17 @@ define([
                 "lastName": "{{Contact.Attribute."+ eventDefinitionKey+".LastName}}",
                 "city": "{{Contact.Attribute."+ eventDefinitionKey+".City}}",
                 "country": "{{Contact.Attribute."+ eventDefinitionKey+".Country}}"
+            }];*/
+            payload['arguments'].execute.inArguments = [{
+                "webHookURl": webHookURlValue,
+                "tokens": authTokens,
+                "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
+                "firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
+                "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
+                "city": "{{Contact.Attribute.CustomJB.City}}",
+                "country": "{{Contact.Attribute.CustomJB.Country}}"
             }];
-
+            
         }
         if (webHookURlValue.length == 0) {
 
