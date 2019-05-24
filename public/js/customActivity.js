@@ -145,17 +145,17 @@ define([
             //  payload['arguments'].execute.inArguments = modPayLoad;
 
             console.log('PayLoad' + modPayLoad);
-
-          /*  payload['arguments'].execute.inArguments = [{
+        var deName= 'CustomJB';
+            payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
-                "emailAddress": "{{Contact.Attribute."+ eventDefinitionKey + ".EmailAddress}}",
-                "firstName": "{{Contact.Attribute."+ eventDefinitionKey+".FirstName}}",
-                "lastName": "{{Contact.Attribute."+ eventDefinitionKey+".LastName}}",
-                "city": "{{Contact.Attribute."+ eventDefinitionKey+".City}}",
-                "country": "{{Contact.Attribute."+ eventDefinitionKey+".Country}}"
-            }];*/
-            payload['arguments'].execute.inArguments = [{
+                "emailAddress": "{{Contact.Attribute."+ deName + ".EmailAddress}}",
+                "firstName": "{{Contact.Attribute."+ deName+".FirstName}}",
+                "lastName": "{{Contact.Attribute."+ deName+".LastName}}",
+                "city": "{{Contact.Attribute."+ deName+".City}}",
+                "country": "{{Contact.Attribute."+ deName+".Country}}"
+            }];
+           /* payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
                 "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
@@ -163,7 +163,7 @@ define([
                 "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
                 "city": "{{Contact.Attribute.CustomJB.City}}",
                 "country": "{{Contact.Attribute.CustomJB.Country}}"
-            }];
+            }]; */
             
         }
         if (webHookURlValue.length == 0) {
