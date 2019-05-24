@@ -149,11 +149,11 @@ define([
             payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
-                "emailAddress": "{{Contact.Attribute."+ eventDefinitionKey+".\"EmailAddress\"}}",
-                "firstName": "{{Contact.Attribute."+ eventDefinitionKey+".\"FirstName\"}}",
-                "lastName": "{{Contact.Attribute."+ eventDefinitionKey+".\"LastName\"}}",
-                "city": "{{Contact.Attribute."+ eventDefinitionKey+".\"City\"}}",
-                "country": "{{Contact.Attribute."+ eventDefinitionKey+".\"Country\"}}"
+                "emailAddress": "{{Contact.Attribute."+ eventDefinitionKey + ".EmailAddress}}",
+                "firstName": "{{Contact.Attribute."+ eventDefinitionKey+".FirstName}}",
+                "lastName": "{{Contact.Attribute."+ eventDefinitionKey+".LastName}}",
+                "city": "{{Contact.Attribute."+ eventDefinitionKey+".City}}",
+                "country": "{{Contact.Attribute."+ eventDefinitionKey+".Country}}"
             }];
 
         }
