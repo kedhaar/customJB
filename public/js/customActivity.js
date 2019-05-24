@@ -12,6 +12,8 @@ define([
     /** variable to hold journey schema response received on call to connection.on('requestedSchema') **/
     var jsonSchemaObject = {};
     var eventDefinitionKey;
+    /** variable to hold DE name i/p user **/
+    var dataExtensionName;
 
     var steps = [{
         "label": "Configure WebHook",
@@ -120,6 +122,7 @@ define([
         console.log('customActivity.js ----->  clicked on save');
 
         var webHookURlValue = $('#inputTextBox').val();
+        dataExtensionName = $('#inputTextBoxDE').val();
         var errMsg;
 
         console.log(webHookURlValue);
@@ -145,34 +148,43 @@ define([
             //  payload['arguments'].execute.inArguments = modPayLoad;
 
             console.log('PayLoad' + modPayLoad);
-        var deName= 'CustomJB';
+            var deName = 'CustomJB';
             payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
-                "emailAddress": "{{Contact.Attribute."+ deName + ".EmailAddress}}",
-                "firstName": "{{Contact.Attribute."+ deName+".FirstName}}",
-                "lastName": "{{Contact.Attribute."+ deName+".LastName}}",
-                "city": "{{Contact.Attribute."+ deName+".City}}",
-                "country": "{{Contact.Attribute."+ deName+".Country}}"
+                "emailAddress": "{{Contact.Attribute." + deName + ".EmailAddress}}",
+                "firstName": "{{Contact.Attribute." + deName + ".FirstName}}",
+                "lastName": "{{Contact.Attribute." + deName + ".LastName}}",
+                "city": "{{Contact.Attribute." + deName + ".City}}",
+                "country": "{{Contact.Attribute." + deName + ".Country}}"
             }];
-           /* payload['arguments'].execute.inArguments = [{
-                "webHookURl": webHookURlValue,
-                "tokens": authTokens,
-                "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
-                "firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
-                "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
-                "city": "{{Contact.Attribute.CustomJB.City}}",
-                "country": "{{Contact.Attribute.CustomJB.Country}}"
-            }]; */
-            
-        }
-        if (webHookURlValue.length == 0) {
+            /* payload['arguments'].execute.inArguments = [{
+                 "webHookURl": webHookURlValue,
+                 "tokens": authTokens,
+                 "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
+                 "firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
+                 "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
+                 "city": "{{Contact.Attribute.CustomJB.City}}",
+                 "country": "{{Contact.Attribute.CustomJB.Country}}"
+             }]; */
 
-            errMsg = 'Error: WebHook URl cannot be blank.';
-            console.error(errMsg);
-            $('#errorMsgConfig').text(errMsg);
-            $('#errorMsgConfig').show();
-            connection.trigger('ready');
+        }
+        if (webHookURlValue.length == 0 || dataExtensionName.length == 0) {
+
+            if (webHookURlValue.length == 0) {
+                errMsg = 'Error: WebHook URl cannot be blank.';
+                console.error(errMsg);
+                $('#errorMsgConfig').text(errMsg);
+                $('#errorMsgConfig').show();
+                connection.trigger('ready');
+            } else {
+                errMsg = 'Error: DE Name cannot be blank.';
+                console.error(errMsg);
+                $('#errorMsgConfigDE').text(errMsg);
+                $('#errorMsgConfigDE').show();
+                connection.trigger('ready');
+            }
+
         } else {
             console.log('Updated Connection Activity');
 
