@@ -11,6 +11,7 @@ define([
     var payload = {};
     /** variable to hold journey schema response received on call to connection.on('requestedSchema') **/
     var jsonSchemaObject = {};
+    var eventDefinitionKey;
 
     var steps = [{
         "label": "Configure WebHook",
@@ -49,23 +50,23 @@ define([
             // console.log('*** key elements ***', deDefKey[0].key);
         });
         // console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
-        
-        var eventDefinitionKey;
+
+
         connection.trigger('requestTriggerEventDefinition');
 
-    connection.on('requestedTriggerEventDefinition',
-function(eventDefinitionModel) {
-    if(eventDefinitionModel){
+        connection.on('requestedTriggerEventDefinition',
+            function(eventDefinitionModel) {
+                if (eventDefinitionModel) {
 
-        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        console.log(">>>Event Definition Key " + eventDefinitionKey);
-        /*If you want to see all*/
-        console.log('>>>Request Trigger', 
-        JSON.stringify(eventDefinitionModel));
-    }
+                    eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+                    console.log(">>>Event Definition Key " + eventDefinitionKey);
+                    /*If you want to see all*/
+                    console.log('>>>Request Trigger',
+                        JSON.stringify(eventDefinitionModel));
+                }
 
-});
-        
+            });
+
     }
 
     function initialize(data) {
@@ -134,26 +135,26 @@ function(eventDefinitionModel) {
             var jsonkey = jsonSplit[jsonSplit.length - 1];
 
             //inArgs[jsonkey] = deArgs;
-            inArgs[jsonkey] = '{{Contact.Attribute.'+ jsonSplit[1] +'.'+ jsonkey + '}}';
+            inArgs[jsonkey] = '{{Contact.Attribute.' + jsonSplit[1] + '.' + jsonkey + '}}';
         });
         var modPayLoad = [];
-        
+
         if (true) {
             //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
             modPayLoad.push(inArgs);
-            payload['arguments'].execute.inArguments = modPayLoad;
-            
+            //  payload['arguments'].execute.inArguments = modPayLoad;
+
             console.log('PayLoad' + modPayLoad);
 
-            /** [{
+            payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
-                "emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
-                "firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
-                "lastName": "{{Contact.Attribute.CustomJB.LastName}}",
-                "city": "{{Contact.Attribute.CustomJB.City}}",
-                "country": "{{Contact.Attribute.CustomJB.Country}}"
-            }];**/
+                "emailAddress": "{{Contact.Attribute."+ eventDefinitionKey+".\"EmailAddress\"}}",
+                "firstName": "{{Contact.Attribute."+ eventDefinitionKey+".\"FirstName\"}}",
+                "lastName": "{{Contact.Attribute."+ eventDefinitionKey+".\"LastName\"}}",
+                "city": "{{Contact.Attribute."+ eventDefinitionKey+".\"City\"}}",
+                "country": "{{Contact.Attribute."+ eventDefinitionKey+".\"Country\"}}"
+            }];
 
         }
         if (webHookURlValue.length == 0) {
