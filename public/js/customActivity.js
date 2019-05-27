@@ -99,6 +99,7 @@ define([
 
         if (hasInArguments && payload['arguments'].execute.inArguments[0].webHookURl) {
             $('#inputTextBox').val(payload['arguments'].execute.inArguments[0].webHookURl);
+			$('#inputTextBoxDE').val(dataExtensionName);
         }
 
         connection.trigger('updateButton', {
@@ -125,7 +126,8 @@ define([
         dataExtensionName = $('#inputTextBoxDE').val();
         var errMsg;
 
-        console.log(webHookURlValue);
+        console.log('URl entered' + webHookURlValue);
+		console.log('DE Name entered ' + dataExtensionName);
 
         var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0);
@@ -138,17 +140,17 @@ define([
             var jsonkey = jsonSplit[jsonSplit.length - 1];
 
             //inArgs[jsonkey] = deArgs;
-            inArgs[jsonkey] = '{{Contact.Attribute.' + jsonSplit[1] + '.' + jsonkey + '}}';
+            inArgs[jsonkey] = '{{Contact.Attribute.' + dataExtensionName + '.' + jsonkey + '}}';
         });
         var modPayLoad = [];
 
         if (true) {
-            //    payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
+            payload['arguments'].execute.inArguments[0].inputTextBox = webHookURlValue;
             modPayLoad.push(inArgs);
-            //  payload['arguments'].execute.inArguments = modPayLoad;
+            payload['arguments'].execute.inArguments = modPayLoad;
 
             console.log('PayLoad' + modPayLoad);
-            var deName = 'CustomJB';
+           /* var deName = 'CustomJB';
             payload['arguments'].execute.inArguments = [{
                 "webHookURl": webHookURlValue,
                 "tokens": authTokens,
@@ -157,7 +159,7 @@ define([
                 "lastName": "{{Contact.Attribute." + deName + ".LastName}}",
                 "city": "{{Contact.Attribute." + deName + ".City}}",
                 "country": "{{Contact.Attribute." + deName + ".Country}}"
-            }];
+            }]; */
             /* payload['arguments'].execute.inArguments = [{
                  "webHookURl": webHookURlValue,
                  "tokens": authTokens,
