@@ -16,11 +16,11 @@
 	"arguments": {
 		"execute": {
 			"inArguments": [{
-				"emailAddress": "{{Contact.Attribute.CustomJB.EmailAddress}}",
-            			"firstName": "{{Contact.Attribute.CustomJB.FirstName}}",
-            			"lastName": "{{Contact.Attribute.CustomJB.LastName}}",
-           			"city": "{{Contact.Attribute.CustomJB.City}}",
-            			"Country": "{{Contact.Attribute.CustomJB.Country}}"
+				"emailAddress": "{{Contact.Attribute.fuelKey.EmailAddress}}",
+            			"firstName": "{{Contact.Attribute.fuelKey.FirstName}}",
+            			"lastName": "{{Contact.Attribute.fuelKey.LastName}}",
+           			"city": "{{Contact.Attribute.fuelKey.City}}",
+            			"Country": "{{Contact.Attribute.fuelKey.Country}}"
 			}],
 			"outArguments": [],
 			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/execute",
