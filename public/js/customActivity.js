@@ -99,7 +99,7 @@ define([
 
         if (hasInArguments && payload['arguments'].execute.inArguments[0].webHookURl) {
             $('#inputTextBox').val(payload['arguments'].execute.inArguments[0].webHookURl);
-			$('#inputTextBoxDE').val(dataExtensionName);
+			$('#inputTextBoxDE').val(payload['arguments'].execute.inArguments[0].deName);
         }
 
         connection.trigger('updateButton', {
@@ -134,6 +134,7 @@ define([
         var inArgs = {};
         inArgs.webHookURl = webHookURlValue;
         inArgs.tokens = authTokens;
+		inArgs.deName = dataExtensionName;
         jsonSchemaObject.forEach(function(item) {
             var deArgs = item.key;
             var jsonSplit = deArgs.split(".");
@@ -179,7 +180,8 @@ define([
                 $('#errorMsgConfig').text(errMsg);
                 $('#errorMsgConfig').show();
                 connection.trigger('ready');
-            } else {
+            } 
+			if (dataExtensionName.length == 0) {
                 errMsg = 'Error: DE Name cannot be blank.';
                 console.error(errMsg);
                 $('#errorMsgConfigDE').text(errMsg);
