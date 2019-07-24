@@ -23,7 +23,7 @@
             			"Country": "{{Contact.Attribute.fuelKey.Country}}"
 			}],
 			"outArguments": [],
-			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/execute",
+			"url": "https://ar-game-poc.herokuapp.com/journeybuilder/execute",
 			"verb": "POST",
 			"body": "",
 			"header": "",
@@ -33,27 +33,27 @@
 		}
 	},
 	"configurationArguments": {
-		"applicationExtensionKey": "97616228-2793-4281-8466-08ce1941f225",
+		"applicationExtensionKey": "ff0510c9-a075-4fb1-acef-5b2e659db722",
 		"save": {
-			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/save",
+			"url": "https://ar-game-poc.herokuapp.com/journeybuilder/save",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true
 		},
 		"publish": {
-			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/publish",
+			"url": "https://ar-game-poc.herokuapp.com/journeybuilder/publish",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true
 		},
 		"stop": {
-			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/stop",
+			"url": "https://ar-game-poc.herokuapp.com/journeybuilder/stop",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true
 		},
 		"validate": {
-			"url": "https://customjourneyactivity.herokuapp.com/journeybuilder/validate",
+			"url": "https://ar-game-poc.herokuapp.com/journeybuilder/validate",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true
