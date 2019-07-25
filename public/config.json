@@ -1,8 +1,8 @@
 {
 	"workflowApiVersion": "1.1",
 	"metaData": {
-		"icon": "images/webhook-1.png",
-		"iconSmall": "images/webhook.png",
+		"icon": "images/monopolygreen2.png",
+		"iconSmall": "images/monopolygreen2.png",
 		"category": "message"
 	},
 	"type": "REST",
