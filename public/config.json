@@ -16,11 +16,8 @@
 	"arguments": {
 		"execute": {
 			"inArguments": [{
-				"emailAddress": "{{Contact.Attribute.fuelKey.EmailAddress}}",
-            			"firstName": "{{Contact.Attribute.fuelKey.FirstName}}",
-            			"lastName": "{{Contact.Attribute.fuelKey.LastName}}",
-           			"city": "{{Contact.Attribute.fuelKey.City}}",
-            			"Country": "{{Contact.Attribute.fuelKey.Country}}"
+				"winid": "{{Contact.Attribute.BluedotLocationKE.SubscriberKey}}",
+            			"zone": "{{Contact.Attribute.BluedotLocationKE.ZoneName}}"
 			}],
 			"outArguments": [],
 			"url": "https://ar-game-poc.herokuapp.com/journeybuilder/execute",
