@@ -8,8 +8,8 @@
 	"type": "REST",
 	"lang": {
 		"en-US": {
-			"name": "Web Hook",
-			"description": "A custom Journey Builder activity that implements WebHooks. This activity will POST (Journey Data) to a URL when contact reaches thsi node in journey.",
+			"name": "Claim Code",
+			"description": "A custom Journey Builder activity that will assign Codes to customers. This activity will POST (Journey Data) to a URL when contact reaches this node in journey.",
 			"step1Label": "Configure Web Hook Custom Activity"
 		}
 	},
