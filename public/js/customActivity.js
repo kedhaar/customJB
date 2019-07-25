@@ -37,21 +37,21 @@ define([
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
-        //var deDefKey;
-        //var deFieldsKey = [];
+        var deDefKey;
+        var deFieldsKey = [];
         connection.trigger('requestSchema');
         connection.on('requestedSchema', function(data) {
             // save schema
             jsonSchemaObject = data['schema'];
-            /** for (var i = 0; i < deDefKey.length; i++) {
+             for (var i = 0; i < deDefKey.length; i++) {
                  var obj = deDefKey[0].key;
                  deFieldsKey.push(obj);
-             }**/
+             }
             console.log('*** Schema ***', jsonSchemaObject);
             // console.log('*** key elements ***', deDefKey.length);
             // console.log('*** key elements ***', deDefKey[0].key);
         });
-        // console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
+         console.log('*** DE Fields schema ***', JSON.stringify(deFieldsKey));
 
 
         connection.trigger('requestTriggerEventDefinition');
