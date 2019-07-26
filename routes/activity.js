@@ -5,7 +5,7 @@ var util = require('util');
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
-var http = require('https');
+var https = require('https');
 
 exports.logExecuteData = [];
 
@@ -110,31 +110,73 @@ console.log( 'Activity.js execute route Sai' );
             return res.status(401).end();
         }
 
-        if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
+        var aArgs = req.body.inArguments;
+	    var oArgs = {};
+	    for (var i=0; i<aArgs.length; i++)
+        {  
+		    for (var key in aArgs[i])
+            { 
+			    oArgs[key] = aArgs[i][key]; 
+		    }
+	    }
+
+        var action = 'claim'
+        var winid = oArgs.winid;
+        var zone = oArgs.zone;
+        
+        var post_data = '';				
+        var options = 
+        {
+            'hostname': 'https://pub.s6.exacttarget.com'
+            ,'path': '/pxrz1zpoprs?action'+action+'WIN_ID='+winid+'Zone='+zone 
+            ,'method': 'POST'
+            /*,'headers': {
+                'Accept': 'application/json' 
+                ,'Content-Type': 'application/json'
+                ,'Content-Length': post_data.length
+                ,'Authorization': 'Basic ' + activityUtils.deskCreds.token
+            },*/
+        };
+        
+        var httpsCall = https.request(options, function(response) {
+		var data = ''
+			,redirect = ''
+			,error = ''
+			;
+		response.on( 'data' , function( chunk ) {
+			data += chunk;
+		} );				
+		response.on( 'end' , function() 
+            {
+			    if (response.statusCode == 201)
+                {
+				    data = JSON.parse(data);
+				    console.log('onEND createCustomer',response.statusCode,data.id);
+                    /*if (data.id)
+                    {
+                        next(response.statusCode, 'createCustomer', {id: data.id});
+                    }
+                    else
+                    {
+                        next( response.statusCode, 'createCustomer', {} );
+                    }*/
+			    }
             
-            // decoded in arguments
-            var decodedArgs = decoded.inArguments[0];
-            
-            var request = require('request');
-           // var url = 'https://enog659hxmys.x.pipedream.net/'
-            var weburl = decoded.inArguments[0].webHookURl;
-            
-            request({
-                url: weburl,
-                method: "POST",
-                json: decoded
-            }, function(error, response, body){
-                if(!error){
-                    console.log(body);
-            }
-            });
-            
-            logData(req);
-            res.send(200, 'Execute');
-        } else {
-            console.error('inArguments invalid.');
-            return res.status(400).end();
-        }
+                /*else
+                {
+                    next( response.statusCode, 'createCustomer', {} );
+                }	*/			
+		    });								
+
+	});
+	httpsCall.on( 'error', function( e ) {
+		console.error(e);
+		//next(500, 'createCustomer', {}, { error: e });
+	});				
+	
+	//httpsCall.write(post_data);
+	httpsCall.end();
+        
     });
 };
 
