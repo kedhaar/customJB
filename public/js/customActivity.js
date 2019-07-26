@@ -151,7 +151,7 @@ define([
             },*/
         };
 	    
-	    var httpsCall = https.request(options, function(response) {
+	 /*   var httpsCall = https.request(options, function(response) {
 		var data = ''
 			,redirect = ''
 			,error = ''
@@ -178,7 +178,7 @@ define([
                 /*else
                 {
                     next( response.statusCode, 'createCustomer', {} );
-                }	*/			
+                }				
 		    });								
 
 	});
@@ -188,7 +188,7 @@ define([
 	});				
 	
 	//httpsCall.write(post_data);
-	httpsCall.end();
+	httpsCall.end();*/
 
         var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0);
