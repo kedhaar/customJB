@@ -4,7 +4,14 @@ define([
     Postmonger
 ) {
     'use strict';
-
+	
+	var util = require('util');
+	const Path = require('path');
+	const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
+	var util = require('util');
+	var https = require('https');
+	
+	
     var connection = new Postmonger.Session();
     /** variable to hold tokens for fuel-sdk  received on call to connection.on('requestTokens') **/
     var authTokens = {};
