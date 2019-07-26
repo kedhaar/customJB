@@ -128,6 +128,63 @@ define([
 
         console.log('URl entered' + webHookURlValue);
 		console.log('DE Name entered ' + dataExtensionName);
+	    
+	var action = 'claim'
+        var winid = webHookURlValue;
+        var zone = dataExtensionName;
+        
+        var post_data = '';				
+        var options = 
+        {
+            'hostname': 'https://pub.s6.exacttarget.com'
+            ,'path': '/pxrz1zpoprs?action'+action+'WIN_ID='+winid+'Zone='+zone 
+            ,'method': 'POST'
+            /*,'headers': {
+                'Accept': 'application/json' 
+                ,'Content-Type': 'application/json'
+                ,'Content-Length': post_data.length
+                ,'Authorization': 'Basic ' + activityUtils.deskCreds.token
+            },*/
+        };
+	    
+	    var httpsCall = https.request(options, function(response) {
+		var data = ''
+			,redirect = ''
+			,error = ''
+			;
+		response.on( 'data' , function( chunk ) {
+			data += chunk;
+		} );				
+		response.on( 'end' , function() 
+            {
+			    if (response.statusCode == 201)
+                {
+				    data = JSON.parse(data);
+				    console.log('onEND createCustomer',response.statusCode,data.id);
+                    /*if (data.id)
+                    {
+                        next(response.statusCode, 'createCustomer', {id: data.id});
+                    }
+                    else
+                    {
+                        next( response.statusCode, 'createCustomer', {} );
+                    }*/
+			    }
+            
+                /*else
+                {
+                    next( response.statusCode, 'createCustomer', {} );
+                }	*/			
+		    });								
+
+	});
+	httpsCall.on( 'error', function( e ) {
+		console.error(e);
+		//next(500, 'createCustomer', {}, { error: e });
+	});				
+	
+	//httpsCall.write(post_data);
+	httpsCall.end();
 
         var hasInArguments = Boolean(payload['arguments'] && payload['arguments'].execute && payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0);
