@@ -133,7 +133,7 @@ define([
         console.log('URl entered' + webHookURlValue);
 		console.log('DE Name entered ' + dataExtensionName);
 	    
-	var action = 'claim'
+	/*var action = 'claim'
         var winid = webHookURlValue;
         var zone = dataExtensionName;
         
@@ -148,8 +148,8 @@ define([
                 ,'Content-Type': 'application/json'
                 ,'Content-Length': post_data.length
                 ,'Authorization': 'Basic ' + activityUtils.deskCreds.token
-            },*/
-        };
+            },
+        };*/
 	    
 	 /*   var httpsCall = https.request(options, function(response) {
 		var data = ''
